@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "961643378079",
+    "project_id": "inventory-app-f23f8",
+    "storage_bucket": "inventory-app-f23f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961643378079:android:b1f5f3044fe32f54a179aa",
+        "android_client_info": {
+          "package_name": "com.pnj.gudang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961643378079-o6buun75l8rq53j7ek8bj6j54to4cdbe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQIJdK9hOgiMO5Lloeo2Ja4mJzeVJCRVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961643378079-o6buun75l8rq53j7ek8bj6j54to4cdbe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
