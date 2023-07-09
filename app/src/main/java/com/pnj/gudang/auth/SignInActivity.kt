@@ -18,6 +18,7 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sign_in)
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
@@ -25,6 +26,7 @@ class SignInActivity : AppCompatActivity() {
         val editTextUsername = findViewById<EditText>(R.id.editTextUsername)
         val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
         val buttonLogin = findViewById<Button>(R.id.buttonLogin)
+        val buttonSignUp = findViewById<Button>(R.id.buttonSignUp)
 
         buttonLogin.setOnClickListener {
             val username = editTextUsername.text.toString().trim()
@@ -35,6 +37,11 @@ class SignInActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter username and password", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        buttonSignUp.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
 
     }
