@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Search Bar -->
+    <SearchView
+        android:id="@+id/searchViewInventory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Search Inventory"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@android:color/white"
+        android:background="@android:color/white"
+        android:padding="8dp"/>
+
+    <!-- Inventory List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/inventoryList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:background="@android:color/white"/>
+
+    <!-- Add New Item Button (Optional) -->
+    <Button
+        android:id="@+id/btnAddItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Add New Item"
+        android:padding="16dp"/>
+
+    <!-- Additional UI elements can be added here based on your app's requirements -->
+
+</LinearLayout>
