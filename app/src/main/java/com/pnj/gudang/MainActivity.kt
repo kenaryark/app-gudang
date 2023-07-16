@@ -1,12 +1,11 @@
 package com.pnj.gudang
 
-import InventoryFragment
+import com.pnj.gudang.item.InventoryFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.pnj.gudang.auth.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,8 +25,8 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(InventoryFragment())
                     true
                 }
-                R.id.logout -> {
-                    finish()
+                R.id.settings -> {
+                    loadFragment(SettingsFragment())
                     true
                 }
 

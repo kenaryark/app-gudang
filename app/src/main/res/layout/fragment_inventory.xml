@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
-    <!-- Search Bar -->
-    <SearchView
-        android:id="@+id/searchViewInventory"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:queryHint="Search Inventory"
-        android:iconifiedByDefault="false"
-        android:queryBackground="@android:color/white"
-        android:background="@android:color/white"
-        android:padding="8dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!-- Inventory List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inventoryList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp"
-        android:background="@android:color/white"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <SearchView
+                android:id="@+id/searchViewInventory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Search Inventory"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@android:color/white"
+                android:background="@android:color/white"
+                android:padding="8dp"/>
+        </LinearLayout>
 
-    <!-- Add New Item Button (Optional) -->
-    <Button
-        android:id="@+id/btnAddItem"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemListView"
+            android:background="#F2F2F2"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_list_layout" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Add New Item"
-        android:padding="16dp"/>
+        android:text="Add Item"
+        android:id="@+id/btnAddItem"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="?colorOnPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:padding="5dp"
 
-    <!-- Additional UI elements can be added here based on your app's requirements -->
-
-</LinearLayout>
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="10dp"
+        app:iconTint="?colorOnPrimary"
+        android:layout_gravity="bottom"
+        />
+</RelativeLayout>

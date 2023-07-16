@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">Gudang</string>
-    <string-array name="category_array">
-        <item>Category 1</item>
-        <item>Category 2</item>
-        <item>Category 3</item>
-        <!-- Add more categories as needed -->
+    <string-array name="warehouse_array">
+        <item>Warehouse 1</item>
+        <item>Warehouse 2</item>
+        <item>Warehouse 3</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
