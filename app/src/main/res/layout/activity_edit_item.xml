@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".item.AddItemActivity">
+    tools:context=".item.EditItemActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Add Item"
+            android:text="Edit Item"
             android:textSize="17dp"
             android:textStyle="bold"/>
         <com.google.android.material.textfield.TextInputLayout
@@ -99,12 +99,12 @@
 
         </com.google.android.material.textfield.TextInputLayout>
         <Button
-            android:id="@+id/BtnAddItem"
+            android:id="@+id/BtnEditItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:backgroundTint="#2b8326"
-            android:text="Add Item"
+            android:text="Edit Item"
             android:layout_marginBottom="15dp"
             android:textColor="#fff"/>
     </LinearLayout>

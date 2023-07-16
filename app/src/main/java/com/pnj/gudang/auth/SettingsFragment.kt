@@ -1,28 +1,27 @@
+package com.pnj.gudang.auth
+
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import com.pnj.gudang.AddItemActivity
 import com.pnj.gudang.R
+import com.pnj.gudang.databinding.ActivitySignInBinding
 import com.pnj.gudang.databinding.FragmentInventoryBinding
+import com.pnj.gudang.databinding.FragmentSettingsBinding
 
-class InventoryFragment : Fragment(R.layout.fragment_inventory) {
-
-    private var _binding: FragmentInventoryBinding? = null
+class SettingsFragment : Fragment(R.layout.fragment_settings) {
+    private var _binding: FragmentSettingsBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentInventoryBinding.bind(view)
+        val binding = FragmentSettingsBinding.bind(view)
         _binding = binding
 
-        // Set click listener for "Add Item" button using data binding
-        binding.btnAddItem.setOnClickListener {
-            // Navigate to the new activity when the button is clicked
-            val intent = Intent(activity, AddItemActivity::class.java)
+        binding.btnLogout.setOnClickListener {
+            val intent = Intent(activity, SignInActivity::class.java)
             startActivity(intent)
         }
     }
@@ -33,5 +32,4 @@ class InventoryFragment : Fragment(R.layout.fragment_inventory) {
         _binding = null
         super.onDestroyView()
     }
-
 }

@@ -46,6 +46,10 @@ class SignInActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onBackPressed() {
+    }
+
     private fun login(username: String, password: String) {
         auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener(this) { task ->
