@@ -2,8 +2,10 @@ package com.pnj.gudang.item
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +50,18 @@ class InventoryFragment : Fragment(R.layout.fragment_inventory) {
         itemRecyclerView.adapter = itemAdapter
 
         load_data()
+
+        binding.searchViewInventory.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(query: String): Boolean {
+                search_data(query)
+                return true
+            }
+
+            override fun onQueryTextSubmit(newText: String): Boolean {
+                search_data(newText)
+                return true
+            }
+        })
     }
 
     override fun onDestroyView() {
@@ -79,4 +93,26 @@ class InventoryFragment : Fragment(R.layout.fragment_inventory) {
         })
     }
 
+    private fun search_data(keyword: String) {
+        itemArrayList.clear()
+        db = FirebaseFirestore.getInstance()
+
+        val query = db.collection("item")
+            .orderBy("name")
+            .startAt(keyword)
+            .endAt(keyword + "\uf8ff")
+            .addSnapshotListener { querySnapshot, error ->
+                if (error != null) {
+                    Log.e("Firestore Error", error.message.toString())
+                    return@addSnapshotListener
+                }
+
+                for (document in querySnapshot!!.documents) {
+                   // itemArrayList.add(document.toObject(Item::class.java))
+                    val item = document.toObject(Item::class.java)
+                    item?.let { itemArrayList.add(it) }
+                }
+                itemAdapter.notifyDataSetChanged()
+            }
+    }
 }
