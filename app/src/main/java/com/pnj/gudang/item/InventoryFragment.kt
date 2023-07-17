@@ -6,7 +6,11 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
@@ -15,8 +19,14 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.pnj.gudang.R
 import com.pnj.gudang.databinding.FragmentInventoryBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class InventoryFragment : Fragment(R.layout.fragment_inventory) {
 
@@ -62,6 +72,9 @@ class InventoryFragment : Fragment(R.layout.fragment_inventory) {
                 return true
             }
         })
+
+        swipeDelete()
+
     }
 
     override fun onDestroyView() {
@@ -114,5 +127,95 @@ class InventoryFragment : Fragment(R.layout.fragment_inventory) {
                 }
                 itemAdapter.notifyDataSetChanged()
             }
+    }
+
+    private fun deleteFoto(file_name: String){
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        val deleteFileRef = storageRef.child(file_name)
+        if (deleteFileRef != null){
+            deleteFileRef.delete().addOnSuccessListener {
+                Log.e("deleted","success")
+            }.addOnFailureListener{
+                Log.e("deleted","failed")
+            }
+        }
+    }
+    fun deleteItem(item: Item,doc_id:String){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Delete this ${item.name} ?")
+            .setCancelable(false)
+            .setPositiveButton("Yes"){dialog,id ->
+                lifecycleScope.launch{
+                    db.collection("item")
+                        .document(doc_id).delete()
+                    deleteFoto("img_item/${item.name}_${item.invoice}.jpg")
+                    Toast.makeText(
+                        context,
+                        item.name.toString() + " is deleted",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    load_data()
+                }
+            }
+            .setNegativeButton("No"){dialog,id ->
+                dialog.dismiss()
+                load_data()
+            }
+        val alert = builder.create()
+        alert.show()
+    }
+    fun swipeDelete(){
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
+            ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+
+                lifecycleScope.launch{
+                    val item = itemArrayList[position]
+                    val personQuery = db.collection("item")
+                        .whereEqualTo("name",item.name)
+                        .whereEqualTo("quantity",item.quantity)
+                        .whereEqualTo("invoice",item.invoice)
+                        .whereEqualTo("date",item.date)
+//                        .whereEqualTo("warehouse",item.warehouse)
+                        .get()
+                        .await()
+                    if (personQuery.documents.isNotEmpty()){
+                        for (document in personQuery){
+                            try {
+                                deleteItem(item,document.id)
+                                load_data()
+                            } catch (e: Exception) {
+                                withContext(Dispatchers.Main){
+                                    Toast.makeText(
+                                        context,
+                                        e.message.toString(),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                context,
+                                "Not Found",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+            }
+        }).attachToRecyclerView(itemRecyclerView)
     }
 }
