@@ -16,7 +16,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/BtnImgItem"
+                android:id="@+id/BtnEditImgItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -38,7 +38,7 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TxtName"
+                android:id="@+id/TxtEditName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Item Name"/>
@@ -50,7 +50,7 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TxtQuantity"
+                android:id="@+id/TxtEditQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="numberDecimal"
@@ -63,7 +63,7 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="8dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TxtNoInvoice"
+                android:id="@+id/TxtEditNoInvoice"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="numberDecimal"
@@ -76,7 +76,7 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="8dp">
             <Spinner
-                android:id="@+id/TxtWarehouse"
+                android:id="@+id/TxtEditWarehouse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Select Warehouse"
@@ -91,7 +91,7 @@
             android:layout_marginVertical="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TxtDateIn"
+                android:id="@+id/TxtEditDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:editable="false"

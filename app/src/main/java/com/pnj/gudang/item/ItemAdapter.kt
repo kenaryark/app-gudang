@@ -18,15 +18,14 @@ class ItemAdapter(private val itemList : ArrayList<Item>) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
     private lateinit var activity: AppCompatActivity
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var name : TextView = itemView.findViewById(R.id.TVLName)
-        var quantity : TextView = itemView.findViewById(R.id.TVLQuantity)
-        var invoice : TextView = itemView.findViewById(R.id.TVLInvoice)
-        var date : TextView = itemView.findViewById(R.id.TVLDate)
+        var name: TextView = itemView.findViewById(R.id.TVLName)
+        var quantity: TextView = itemView.findViewById(R.id.TVLQuantity)
+        var invoice: TextView = itemView.findViewById(R.id.TVLInvoice)
+        var date: TextView = itemView.findViewById(R.id.TVLDate)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_list_layout,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_list_layout, parent, false)
         return ItemViewHolder(itemView)
     }
 
@@ -41,15 +40,16 @@ class ItemAdapter(private val itemList : ArrayList<Item>) :
         holder.invoice.text = item.invoice
         holder.date.text = item.date
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             activity = it.context as AppCompatActivity
             activity.startActivity(Intent(activity, EditItemActivity::class.java).apply {
-                putExtra("name",item.name.toString())
-                putExtra("quantity",item.quantity.toString())
-                putExtra("invoice",item.quantity.toString())
-                putExtra("date",item.quantity.toString())
+                putExtra("name", item.name)
+                putExtra("quantity", item.quantity)
+                putExtra("invoice", item.invoice)
+                putExtra("date", item.date)
             })
         }
+    }
 
 //        val storageRef = FirebaseStorage.getInstance().reference.child("img_item/${item.name}_${item.invoice}.jpg")
 //        val localfile = File.createTempFile("tempImage","jpg")
@@ -59,5 +59,5 @@ class ItemAdapter(private val itemList : ArrayList<Item>) :
 //        }.addOnFailureListener {
 //            Log.e("foto ?","gagal")
 //        }
-    }
+//    }
 }
