@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pnj.gudang.auth.SettingsFragment
+import com.pnj.gudang.chat.ChatFragment
 
 class MainActivity : AppCompatActivity() {
 
