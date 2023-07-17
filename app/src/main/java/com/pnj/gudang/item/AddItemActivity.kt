@@ -20,7 +20,7 @@ class AddItemActivity : AppCompatActivity() {
 
     private val REQ_CAM = 101
     private lateinit var imgUrl : Uri
-    private var dataGambar: Bitmap? = null
+    private var dataPict: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,18 +55,18 @@ class AddItemActivity : AppCompatActivity() {
         var name : String = binding.TxtAddName.text.toString()
         var quantity : String = binding.TxtAddQuantity.text.toString()
         var invoice : String = binding.TxtAddNoInvoice.text.toString()
-        var warehouse : String = binding.TxtAddWarehouse.toString()
+//        var warehouse : String = binding.TxtAddWarehouse.toString()
         var date : String = binding.TxtAddDate.text.toString()
 
         val item: MutableMap<String, Any> = HashMap()
         item["name"] = name
         item["quantity"] = quantity
         item["invoice"] = invoice
-        item["warehouse"] = warehouse
+//        item["warehouse"] = warehouse
         item["date"] = date
 
-        if(dataGambar != null){
-            uploadPictFirebase(dataGambar!!,"${name}_${invoice}")
+        if(dataPict != null){
+            uploadPictFirebase(dataPict!!,"${name}_${invoice}")
 
             firestoreDatabase.collection("item").add(item)
                 .addOnSuccessListener {
@@ -89,8 +89,8 @@ class AddItemActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQ_CAM && resultCode == RESULT_OK){
-            dataGambar = data?.extras?.get("data") as Bitmap
-            binding.BtnImgAddItem.setImageBitmap(dataGambar)
+            dataPict = data?.extras?.get("data") as Bitmap
+            binding.BtnImgAddItem.setImageBitmap(dataPict)
         }
     }
 

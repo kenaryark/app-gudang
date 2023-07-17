@@ -39,13 +39,15 @@ class InventoryFragment : Fragment(R.layout.fragment_inventory) {
         }
 
         itemRecyclerView = binding.itemListView
-        itemRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        itemRecyclerView.layoutManager = LinearLayoutManager(context)
         itemRecyclerView.setHasFixedSize(true)
 
         itemArrayList = arrayListOf()
         itemAdapter = ItemAdapter(itemArrayList)
 
         itemRecyclerView.adapter = itemAdapter
+
+        load_data()
     }
 
     override fun onDestroyView() {
