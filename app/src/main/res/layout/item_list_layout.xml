@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/TVQuantity"
+                android:id="@+id/TVLQuantity"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="12345678"
-                android:id="@+id/TVInvoice"
+                android:id="@+id/TVLInvoice"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
