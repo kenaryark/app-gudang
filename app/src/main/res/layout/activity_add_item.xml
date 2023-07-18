@@ -69,19 +69,6 @@
                 android:inputType="numberDecimal"
                 android:hint="No Invoice"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="8dp">
-            <Spinner
-                android:id="@+id/TxtAddWarehouse"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Select Warehouse"
-                android:entries="@array/warehouse_array"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
