@@ -129,14 +129,14 @@ class EditItemActivity : AppCompatActivity() {
         var name : String = binding.TxtEditName.text.toString()
         var quantity : String = binding.TxtEditQuantity.text.toString()
         var invoice : String = binding.TxtEditNoInvoice.text.toString()
-        var warehouse : String = binding.TxtEditWarehouse.selectedItem.toString()
+        // var warehouse : String = binding.TxtEditWarehouse.selectedItem.toString()
         var date : String = binding.TxtEditDate.text.toString()
 
         val item: MutableMap<String, Any> = HashMap()
         item["name"] = name
         item["quantity"] = quantity
         item["invoice"] = invoice
-        item["warehouse"] = warehouse
+        // item["warehouse"] = warehouse
         item["date"] = date
 
         if(dataPict != null){
