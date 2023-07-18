@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".item.InventoryFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,19 +39,18 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Item"
-        android:id="@+id/btnAddItem"
-        android:backgroundTint="?attr/colorPrimary"
-        android:textColor="?colorOnPrimary"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:padding="5dp"
-
-        android:layout_marginBottom="70dp"
-        android:layout_marginRight="10dp"
-        app:iconTint="?colorOnPrimary"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        />
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+
+        android:backgroundTint="?attr/colorPrimary"
+        android:padding="5dp"
+        android:textColor="?colorOnPrimary"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:iconTint="?colorOnPrimary" />
 </RelativeLayout>

@@ -10,36 +10,27 @@ import com.pnj.gudang.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.pnj.gudang.MainActivity
+import com.pnj.gudang.databinding.ActivitySignInBinding
 
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: FirebaseDatabase
+    private lateinit var binding : ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
 
-        val editTextUsername = findViewById<EditText>(R.id.editTextUsername)
-        val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
-        val buttonLogin = findViewById<Button>(R.id.buttonLogin)
-        val buttonSignUp = findViewById<Button>(R.id.buttonSignUp)
-
-        buttonLogin.setOnClickListener {
-            val username = editTextUsername.text.toString().trim()
-            val password = editTextPassword.text.toString().trim()
-
-            if (username.isNotEmpty() && password.isNotEmpty()) {
-                login(username, password)
-            } else {
-                Toast.makeText(this, "Please enter username and password", Toast.LENGTH_SHORT).show()
-            }
+        binding.buttonLogin.setOnClickListener {
+            val email = binding.editTextEmail.text.toString()
+            val password = binding.editTextPassword.text.toString()
+            login(email,password)
         }
 
-        buttonSignUp.setOnClickListener {
+        binding.buttonSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
@@ -47,24 +38,32 @@ class SignInActivity : AppCompatActivity() {
     }
 
 
+    private fun login(email: String, password: String) {
+        if(email.isNotEmpty()&&password.isNotEmpty()){
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                if(it.isSuccessful){
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else {
+                    Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        else{
+            Toast.makeText(this,"Complete The Input",Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onBackPressed() {
     }
 
-    private fun login(username: String, password: String) {
-        auth.signInWithEmailAndPassword(username, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    // Add your desired logic after successful login
-
-                    // For example, navigate to another activity
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
-
+//    override fun onStart() {
+//        super.onStart()
+//
+//        if(auth.currentUser != null){
+//            val intent = Intent(this,MainActivity::class.java)
+//            startActivity(intent)
+//        }
+//    }
 }

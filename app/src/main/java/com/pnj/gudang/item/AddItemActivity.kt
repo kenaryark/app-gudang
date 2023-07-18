@@ -55,14 +55,14 @@ class AddItemActivity : AppCompatActivity() {
         var name : String = binding.TxtAddName.text.toString()
         var quantity : String = binding.TxtAddQuantity.text.toString()
         var invoice : String = binding.TxtAddNoInvoice.text.toString()
-//        var warehouse : String = binding.TxtAddWarehouse.toString()
+        // var warehouse : String = binding.TxtAddWarehouse.selectedItem.toString()
         var date : String = binding.TxtAddDate.text.toString()
 
         val item: MutableMap<String, Any> = HashMap()
         item["name"] = name
         item["quantity"] = quantity
         item["invoice"] = invoice
-//        item["warehouse"] = warehouse
+        // item["warehouse"] = warehouse
         item["date"] = date
 
         if(dataPict != null){
